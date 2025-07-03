@@ -1,1 +1,71 @@
-data/
+# Data directories
+data/raw/
+data/processed/
+data/features/
+data/models/
+
+# Logs and results
+logs/
+results/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# Environment variables
+.env
+.venv
+env/
+venv/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# ROS
+build/
+devel/
+install/
+.catkin_workspace
+
+# Model files (too large for git)
+*.pkl
+*.joblib
+*.h5
+*.pth
+
+# Data files
+*.csv
+*.parquet
+*.hdf5
+*.bag

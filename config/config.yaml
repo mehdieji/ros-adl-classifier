@@ -1,0 +1,88 @@
+# ROS ADL Classifier Configuration
+
+# Data Processing Parameters
+data:
+  # Sensor data parameters
+  sensors:
+    imu: 
+      frequency: 50  # Hz
+      axes: ["x", "y", "z"]
+    camera:
+      enabled: false
+      frequency: 30  # Hz
+    
+  # Preprocessing
+  preprocessing:
+    normalize: true
+    filter_type: "lowpass"  # options: lowpass, highpass, bandpass
+    cutoff_frequency: 10.0  # Hz
+    
+  # Segmentation
+  segmentation:
+    window_size: 2.0  # seconds
+    overlap: 0.5  # 50% overlap
+    method: "sliding"  # options: sliding, tumbling
+    
+  # Feature extraction
+  features:
+    time_domain: ["mean", "std", "min", "max", "rms"]
+    frequency_domain: ["fft_mean", "spectral_centroid", "spectral_rolloff"]
+    statistical: ["skewness", "kurtosis", "energy"]
+
+# Model Configuration
+model:
+  type: "random_forest"  # options: random_forest, svm, neural_network, lstm
+  parameters:
+    n_estimators: 100
+    max_depth: 10
+    random_state: 42
+    
+  # Training
+  training:
+    test_size: 0.2
+    validation_size: 0.1
+    cross_validation: 5
+    
+  # Classes (Activities of Daily Living)
+  classes:
+    - "walking"
+    - "sitting"
+    - "standing"
+    - "lying_down"
+    - "eating"
+    - "drinking"
+    - "cooking"
+    - "cleaning"
+
+# ROS Configuration
+ros:
+  topics:
+    imu_data: "/imu/data"
+    camera_data: "/camera/image"
+    predictions: "/adl/predictions"
+    
+  nodes:
+    data_collector: "adl_data_collector"
+    classifier: "adl_classifier"
+    
+  # Real-time processing
+  realtime:
+    buffer_size: 100  # samples
+    prediction_frequency: 2  # Hz
+    confidence_threshold: 0.7
+
+# Paths
+paths:
+  data:
+    raw: "data/raw"
+    processed: "data/processed"
+    features: "data/features"
+    models: "data/models"
+  logs: "logs"
+  results: "results"
+
+# Logging
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  file: "logs/adl_classifier.log"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
