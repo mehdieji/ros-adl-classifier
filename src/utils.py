@@ -54,26 +54,42 @@ def get_data_path(subdir=None):
     return data_path
 
 
-def get_config_path():
+def get_config_path(config_name="config.yaml"):
     """
-    Get path to the main configuration file.
+    Get path to a configuration file.
+    
+    Args:
+        config_name (str): Name of the config file (default: "config.yaml")
     
     Returns:
-        Path: Path to config.yaml
+        Path: Path to the specified config file
     """
     project_root = get_project_root()
-    return project_root / "config.yaml"
+    return project_root / "config" / config_name
 
 
-def load_config():
+def load_config(config_name="config.yaml"):
     """
-    Load the main configuration file.
+    Load a configuration file.
+    
+    Args:
+        config_name (str): Name of the config file to load (default: "config.yaml")
     
     Returns:
         dict: Configuration dictionary
     """
     import yaml
     
-    config_path = get_config_path()
+    config_path = get_config_path(config_name)
     with open(config_path, 'r') as f:
-        return yaml.safe_load(f) 
+        return yaml.safe_load(f)
+
+
+def load_feature_config():
+    """
+    Load the feature extraction configuration file.
+    
+    Returns:
+        dict: Feature configuration dictionary
+    """
+    return load_config("feature_config.yaml") 

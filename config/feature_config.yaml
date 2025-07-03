@@ -1,0 +1,50 @@
+# Feature Extraction Configuration for ROS ADL Classifier
+# This file contains the tsfresh feature extraction parameters
+
+# tsfresh HAR (Human Activity Recognition) features
+# Each feature can be configured with parameters or set to null for default parameters
+tsfresh_har_features:
+  mean: null
+  standard_deviation: null
+  variance: null
+  minimum: null
+  maximum: null
+  median: null
+  skewness: null
+  kurtosis: null
+  absolute_sum_of_changes: null
+  mean_abs_change: null
+  mean_change: null
+  longest_strike_above_mean: null
+  longest_strike_below_mean: null
+  autocorrelation:
+    - lag: 1
+  cid_ce:
+    - normalize: true
+  binned_entropy:
+    - max_bins: 5
+  sample_entropy: null
+  number_peaks:
+    - n: 1
+  count_above_mean: null
+  count_below_mean: null
+  abs_energy: null
+  fft_coefficient:
+    - coeff: 1
+      attr: abs
+  spkt_welch_density:
+    - coeff: 1
+  agg_autocorrelation:
+    - f_agg: mean
+      maxlag: 3
+  number_crossing_m:
+    - m: 0
+
+
+# Feature extraction parameters
+extraction_params:
+  window_size: 4  # in seconds
+  step_size: 2    # in seconds
+  n_jobs: 20      # number of parallel jobs for feature extraction
+  disable_progressbar: false
+
