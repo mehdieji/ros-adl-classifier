@@ -35,7 +35,7 @@ def parse_m5_sensor_data(csv_file: str) -> dict:
     df = df.rename(columns=rename_map)
 
     # Ensure datetime is parsed (ISO format)
-    df['datetime'] = pd.to_datetime(df['datetime'], format="%Y-%m-%dT%H:%M:%S.%f")
+    df['datetime'] = pd.to_datetime(df['datetime'], format='ISO8601')
 
     # Split into modalities
     modalities = {}

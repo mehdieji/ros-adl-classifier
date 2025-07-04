@@ -31,7 +31,7 @@ def parse_polar_sensor_data(csv_file: str) -> dict:
     df = df.rename(columns=rename_map)
 
     # Ensure datetime is parsed (ISO format)
-    df['datetime'] = pd.to_datetime(df['datetime'], format="%Y-%m-%dT%H:%M:%S.%f")
+    df['datetime'] = pd.to_datetime(df['datetime'], format='ISO8601')
 
     # Only one modality: linear_acceleration
     lin_cols = [f'linear_acceleration_{axis}' for axis in ['x', 'y', 'z'] if f'linear_acceleration_{axis}' in df.columns]

@@ -31,7 +31,7 @@ def parse_sensomative_sensor_data(csv_file: str) -> dict:
     df = df.rename(columns=rename_map)
 
     # Ensure datetime is parsed (ISO format)
-    df['datetime'] = pd.to_datetime(df['datetime'], format="%Y-%m-%dT%H:%M:%S.%f")
+    df['datetime'] = pd.to_datetime(df['datetime'], format='ISO8601')
 
     # Parse the 'pressure' column into 12 separate columns
     def parse_pressure_array(val):

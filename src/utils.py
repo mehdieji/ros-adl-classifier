@@ -84,12 +84,3 @@ def load_config(config_name="config.yaml"):
     with open(config_path, 'r') as f:
         return yaml.safe_load(f)
 
-
-def load_feature_config():
-    """
-    Load the feature extraction configuration file.
-    
-    Returns:
-        dict: Feature configuration dictionary
-    """
-    return load_config("feature_config.yaml") 

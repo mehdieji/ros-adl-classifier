@@ -1,6 +1,37 @@
 # Feature Extraction Configuration for ROS ADL Classifier
 # This file contains the tsfresh feature extraction parameters
 
+# Patient IDs to process (extract just the number from 'patient01', 'patient02', etc.)
+patient_ids:
+  - "01"
+  - "02"
+  - "03"
+  - "04"
+  - "05"
+  - "06"
+  - "07"
+  - "08"
+
+
+# ADL events to process
+adl_events:
+  - "emptywc"
+  - "resting"
+  - "phone"
+  - "computer"
+  - "arm_raises"
+  - "eating"
+  - "hand_cycling"
+  - "chair_to_bed_transfer"
+  - "bed_to_chair_transfer"
+  - "pressure_relief"
+  - "laying_on_back"
+  - "laying_on_right"
+  - "laying_on_left"
+  - "laying_on_stomach"
+  - "assisted_propulsion"
+  - "self_propulsion"
+
 # tsfresh HAR (Human Activity Recognition) features
 # Each feature can be configured with parameters or set to null for default parameters
 tsfresh_har_features:
@@ -10,8 +41,6 @@ tsfresh_har_features:
   minimum: null
   maximum: null
   median: null
-  skewness: null
-  kurtosis: null
   absolute_sum_of_changes: null
   mean_abs_change: null
   mean_change: null
@@ -23,7 +52,6 @@ tsfresh_har_features:
     - normalize: true
   binned_entropy:
     - max_bins: 5
-  sample_entropy: null
   number_peaks:
     - n: 1
   count_above_mean: null
@@ -40,11 +68,21 @@ tsfresh_har_features:
   number_crossing_m:
     - m: 0
 
-
 # Feature extraction parameters
 extraction_params:
-  window_size: 4  # in seconds
-  step_size: 2    # in seconds
-  n_jobs: 20      # number of parallel jobs for feature extraction
+  window_size: 5  # in seconds
+  step_size: 0.2    # in seconds
+  n_jobs: 60      # number of parallel jobs for feature extraction
   disable_progressbar: false
+
+# Output settings
+output:
+  features_dir: "data/features"  # relative to project root
+  filename_format: "patient{patient_id}@{adl_event}@{instance_id}@features.csv"
+
+# NaN/Inf handling for feature output
+nan_inf_handling:
+  nan_value: 11000
+  posinf_value: 9000
+  neginf_value: -9000
 
