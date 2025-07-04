@@ -140,15 +140,13 @@ predictions = classifier.predict(segments)
 ## Supported Activities
 
 The system can classify the following activities:
-- Walking
-- Sitting
-- Standing
+- Resting
+- Propulsion
 - Lying down
 - Eating
-- Drinking
-- Cooking
-- Cleaning
+- etc.
 
+  
 ## Development
 
 ### Adding New Features
