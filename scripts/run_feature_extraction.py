@@ -218,7 +218,7 @@ def save_features(features_df, patient_id, adl_event, instance_id, output_config
     # NaN/Inf handling
     if nan_inf_handling is not None:
         features_df = features_df.replace({
-            np.nan: nan_inf_handling.get('nan_value', -9000),
+            np.nan: nan_inf_handling.get('nan_value', 11000),
             np.inf: nan_inf_handling.get('posinf_value', 9000),
             -np.inf: nan_inf_handling.get('neginf_value', -9000)
         })
