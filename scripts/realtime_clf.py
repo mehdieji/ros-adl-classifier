@@ -14,7 +14,7 @@ from utils import load_config
 models_dir = project_root / "data" / "models"
 bst = xgb.Booster()
 bst.load_model(str(models_dir / "xgb_model.json"))
-bst.set_param({'predictor': 'cpu_predictor'})
+# bst.set_param({'predictor': 'cpu_predictor'})
 
 
 le = joblib.load(str(models_dir / "label_encoder.pkl"))
@@ -127,22 +127,29 @@ if __name__ == "__main__":
     # Simulate 5 DataFrames with the correct columns and 50 rows each
     n = 50
     m5_wrist_l_df = pd.DataFrame({
-        "linear_acceleration_x": 2*np.random.randn(n),
-        "linear_acceleration_y": 3*np.random.randn(n),
+        "linear_acceleration_x": 1*np.random.randn(n),
+        "linear_acceleration_y": 1*np.random.randn(n),
         "linear_acceleration_z": np.random.randn(n),
-        "angular_velocity_x": 0.7*np.random.randn(n),
-        "angular_velocity_y": 0.8*np.random.randn(n),
-        "angular_velocity_z": 0.9*np.random.randn(n),
+        "angular_velocity_x": 20*np.random.randn(n),
+        "angular_velocity_y": 20*np.random.randn(n),
+        "angular_velocity_z": 20*np.random.randn(n),
     })
     m5_wrist_r_df = m5_wrist_l_df.copy()
-    m5_wheel_df = m5_wrist_l_df.copy()
+    m5_wheel_df = pd.DataFrame({
+        "linear_acceleration_x": 2*np.random.randn(n),
+        "linear_acceleration_y": 2*np.random.randn(n),
+        "linear_acceleration_z": 2*np.random.randn(n),
+        "angular_velocity_x": 100*np.random.randn(n),
+        "angular_velocity_y": 100*np.random.randn(n),
+        "angular_velocity_z": 100*np.random.randn(n),
+    })
     polar_chest_df = pd.DataFrame({
         "linear_acceleration_x": 1.1*np.random.randn(n),
         "linear_acceleration_y": 1.2*np.random.randn(n),
         "linear_acceleration_z": 1.3*np.random.randn(n),
     })
     sensomative_bottom_df = pd.DataFrame({
-        f"pressure_{i}": 70*np.random.randn(n) for i in range(12)
+        f"pressure_{i}": 100*np.ones(n) for i in range(12)
     })
     pred = predict_realtime(
         m5_wrist_l_df,
