@@ -78,12 +78,6 @@ conda activate ros-adl-classifier
 pip install -r requirements.txt
 ```
 
-3. Build ROS package:
-```bash
-catkin_make
-source devel/setup.bash
-```
-
 ## Configuration
 
 Edit `config.yaml` to customize:
@@ -348,3 +342,4 @@ python scripts/generate_adl_event_plots.py
 - The script will parse all available ADL event data for the specified patient and generate a PDF in the `results/` directory (e.g., `results/patient_01_adl_events.pdf`).
 - Each page of the PDF corresponds to one event instance, with all sensor plots for that event.
 - The PDF is automatically excluded from git (see `.gitignore`).
+
